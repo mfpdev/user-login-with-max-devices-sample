@@ -63,7 +63,7 @@ public class UserLoginWithMaxDevices extends UserAuthenticationSecurityCheck {
 
             //Check if the user allowed to continue with login process 
             if (!isCurrentDeviceAllowedToLogin(username)) {
-                errorMsg = "You reach the maximum of allowed devices";
+                errorMsg = "you've reached the maximum of allowed devices";
                 return false;
             }
 
