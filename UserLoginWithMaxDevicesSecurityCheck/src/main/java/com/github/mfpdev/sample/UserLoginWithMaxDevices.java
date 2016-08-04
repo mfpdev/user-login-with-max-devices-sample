@@ -54,7 +54,9 @@ public class UserLoginWithMaxDevices extends UserAuthenticationSecurityCheck {
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
         if(credentials!=null && credentials.containsKey(USERNAME) && credentials.containsKey(PASSWORD)){
-            setUUID();
+
+            setCurrentClientDataUUID();
+            cleanRegistrationAttributes();
 
             String username = credentials.get(USERNAME).toString();
             String password = credentials.get(PASSWORD).toString();
@@ -183,7 +185,11 @@ public class UserLoginWithMaxDevices extends UserAuthenticationSecurityCheck {
         return currentContextUUID.equals(contextUUID);
     }
 
-    private void setUUID() {
+
+    /**
+     * Set UUID for the client data. Used to identifying the current client data
+     */
+    private void setCurrentClientDataUUID() {
         if (registrationContext.getRegisteredPublicAttributes().get(CONTEXT_UUID) == null){
             registrationContext.getRegisteredPublicAttributes().put(CONTEXT_UUID, UUID.randomUUID());
         }
