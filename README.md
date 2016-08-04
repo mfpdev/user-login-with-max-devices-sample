@@ -1,11 +1,12 @@
 IBM MobileFirst Foundation 8.0
 ===
-## Limit the device number per authenticated user
-A sample showing how to limit the number of devices per authenticated user.  The sample contains one security check - [UserLoginWithMaxDevicesSecurityCheck](/UserLoginWithMaxDevicesSecurityCheck).
-This Security Check which extends the simple [UserLogin Security Check](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/user-authentication/security-check/) by adding a check for the number of authenticated user, and take an action by block the current login or by logout other authenticated device (with same user).
-The Security Check has configuration which let you define the defaults for:
-- Number of authenticated device per user.
-- Define what action to take if the limit is reached: block current login or auto logout one of the authenticated devices.
+## Limit the number of devices per authenticated user
+This sample shows how to limit the number of devices per authenticated user. The sample contains one security check - [UserLoginWithMaxDevicesSecurityCheck](/UserLoginWithMaxDevicesSecurityCheck).
+This Security Check extends the simple [UserLogin Security Check](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/user-authentication/security-check/) adding logic to check how many devices the user is logged in on, and to either block the user from logging in on an additional device, beyond the max devices limit, or to automatically log them out of a different device when they try to log in from a new one.
+
+The Security Check lets you configure the defaults for:
+- Number of authenticated devices allowed per user - `Max Devices`.
+- What action to take if the limit is reached: block current login or auto logout one of the authenticated devices. - `Auto Logout`.
 
 ##Demo
 [![Limit the device number per authenticated user](https://img.youtube.com/vi/atNMshICZx4/0.jpg)](https://www.youtube.com/watch?v=atNMshICZx4)
@@ -19,7 +20,7 @@ The Security Check has configuration which let you define the defaults for:
 
 * Deploying the Security Check Adapter [UserLoginWithMaxDevicesSecurityCheck](/UserLoginWithMaxDevicesSecurityCheck) by use either Maven or MobileFirst Developer CLI to [build and deploy adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/).
 
-* To test the sample Security Check Adapter use the [following tutorial](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/user-authentication/javascript/#sample-applications), but instead using the UserLogin Security Check, use the current sample's Security Check -> [UserLoginWithMaxDevicesSecurityCheck](/UserLoginWithMaxDevicesSecurityCheck).
+* To test the sample Security Check Adapter use the [following tutorial](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/user-authentication/javascript/#sample-applications), but instead of using the UserLogin Security Check, use the current sample's Security Check ->  [UserLoginWithMaxDevicesSecurityCheck](/UserLoginWithMaxDevicesSecurityCheck).
 
 
 ### Supported Levels
