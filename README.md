@@ -9,7 +9,7 @@ The Security Check lets you configure the defaults for:
 - What action to take if the limit is reached: block current login or auto logout one of the authenticated devices. - `Auto Logout`.
 
 ##Demo
-[![Limit the device number per authenticated user](https://img.youtube.com/vi/B_Hldzr8KAQ/0.jpg)](https://www.youtube.com/watch?v=B_Hldzr8KAQ)
+[![Limit the device number per authenticated user](https://img.youtube.com/vi/Hh11_AVWTVo/0.jpg)](https://www.youtube.com/watch?v=Hh11_AVWTVo)
 
 ### Prerequisites
 1. Understanding the IBM MobileFirst Platform [Authentication and Security](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/).
