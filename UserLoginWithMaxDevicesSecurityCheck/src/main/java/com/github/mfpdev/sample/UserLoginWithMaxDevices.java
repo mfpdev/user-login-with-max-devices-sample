@@ -16,12 +16,16 @@
 
 package com.github.mfpdev.sample;
 
+import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheck;
 import com.ibm.mfp.security.checks.base.UserAuthenticationSecurityCheck;
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
 import com.ibm.mfp.server.registration.external.model.ClientData;
+import com.ibm.mfp.server.security.external.checks.AuthorizationResponse;
 import com.ibm.mfp.server.security.external.checks.IntrospectionResponse;
+import com.ibm.mfp.server.security.external.checks.impl.ExternalizableSecurityCheck;
 import com.ibm.mfp.server.security.external.resource.ClientSearchCriteria;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 public class UserLoginWithMaxDevices extends UserAuthenticationSecurityCheck {
@@ -52,6 +56,14 @@ public class UserLoginWithMaxDevices extends UserAuthenticationSecurityCheck {
     }
 
     @Override
+    public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
+        super.authorize(scope, credentials, request, response);
+        if (getState().equals(STATE_EXPIRED) || getState().equals(STATE_ATTEMPTING)){
+            cleanRegistrationAttributes();
+        }
+    }
+
+    @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
         if(credentials!=null && credentials.containsKey(USERNAME) && credentials.containsKey(PASSWORD)){
 
@@ -63,7 +75,7 @@ public class UserLoginWithMaxDevices extends UserAuthenticationSecurityCheck {
 
             //Check if the user allowed to continue with login process 
             if (!isCurrentDeviceAllowedToLogin(username)) {
-                errorMsg = "You reach the maximum of allowed devices";
+                errorMsg = "you've reached the maximum of allowed devices";
                 return false;
             }
 
